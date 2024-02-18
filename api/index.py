@@ -10,8 +10,8 @@ dotenv_path = find_dotenv('.env.local')
 load_dotenv(dotenv_path)
 
 # Define a route to fetch information about rice
-@app.route("/api/rice", methods=["GET"])
-def get_rice_info():
+@app.route("/api/query", methods=["GET"])
+def get_food_info(query):
     end_point = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 
     headers = {
@@ -22,7 +22,7 @@ def get_rice_info():
     }
 
     params = {
-        'query': '1 cup rice',
+        'query': query,
         'taxonomy': False,
     }
 
@@ -38,7 +38,7 @@ def get_rice_info():
 # Define a route to say "Hello, World!"
 @app.route("/api/python")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return get_food_info("grape")
 
 if __name__ == "__main__":
     app.run(debug=True)

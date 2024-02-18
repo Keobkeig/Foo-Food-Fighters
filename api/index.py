@@ -1,20 +1,18 @@
-from flask import Flask, request, jsonify
-
+from flask import Flask, jsonify, request
 import os
-from dotenv import load_dotenv
+import requests
+from dotenv import load_dotenv, find_dotenv
 
 app = Flask(__name__)
 
-@app.route("/api/python")
-def hello_world():
-    return "<p>Hello, World!</p>"
+# Load environment variables from .env.local file
+dotenv_path = find_dotenv('.env.local')
+load_dotenv(dotenv_path)
 
-@app.route("/api/rice")
-def rice():
-
+# Define a route to fetch information about rice
+@app.route("/api/query", methods=["GET"])
+def get_food_info(query):
     end_point = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
-
-    load_dotenv()
 
     headers = {
         'x-app-id': os.getenv('APP_ID'),
@@ -24,16 +22,23 @@ def rice():
     }
 
     params = {
-        'query': '1 cup rice',
+        'query': query,
         'taxonomy': False,
     }
 
-    response = request.post(end_point, headers=headers, params=params)
-    response.raise_for_status()
-    data = response.json()
+    response = requests.post(end_point, headers=headers, json=params)
+    
+    if response.status_code == 200:
+        data = response.json()
+        del data['foods'][0]['full_nutrients']
+        return jsonify(data), 200
+    else:
+        return jsonify({"error": "Failed to fetch data from Nutritionix API"}), response.status_code
 
-    del data['foods'][0]['full_nutrients']
+# Define a route to say "Hello, World!"
+@app.route("/api/python")
+def hello_world():
+    return get_food_info("grape")
 
-    pretty_json = jsonify.dumps(data, indent=4)
-
-    return pretty_json, 200, {'Content-Type': 'application/json'}
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,4 +1,6 @@
 # Description: This is a simple Flask app that uses a pre-trained model to classify food images.
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
 import tensorflow_hub as hub
 import numpy as np
 import pandas as pd

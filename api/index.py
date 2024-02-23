@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 import os
 import requests
-from test import food_classifier 
 from dotenv import load_dotenv, find_dotenv
+from api.test.model import food_classifier
 
 app = Flask(__name__)
 

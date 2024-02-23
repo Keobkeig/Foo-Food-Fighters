@@ -1,15 +1,15 @@
-import tensorflow.compat.v2 as tf
+# Description: This is a simple Flask app that uses a pre-trained model to classify food images.
 import tensorflow_hub as hub
 import numpy as np
 import pandas as pd
 import cv2
 from skimage import io
 
-def food_classifier(image_url):
-    m = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
-    labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
-    input_shape = (224, 224)
+m = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
+labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
+input_shape = (224, 224)
 
+def food_classifier(image_url):
     image = np.asarray(io.imread(image_url), dtype="float")
     image = cv2.resize(image, dsize=input_shape, interpolation=cv2.INTER_CUBIC)
     # Scale values to [0, 1].

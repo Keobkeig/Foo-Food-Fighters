@@ -13,8 +13,12 @@ while True:
 
     c = cv2.waitKey(1)
     if c == 27:
-        cv2.imshow("Food", frame) 
         cv2.imwrite("Food.jpg", frame) 
+        break
+while True: 
+    cv2.imshow("Food", frame) 
+    c = cv2.waitKey(1)
+    if c == 27:
         break
 cv2.destroyAllWindows()
 cam.release()

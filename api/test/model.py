@@ -6,10 +6,21 @@ import numpy as np
 import pandas as pd
 import cv2
 from skimage import io
+import itertools
+import os
+import sys 
 
-m = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
+import numpy as np
+
+import tensorflow as tf
+
+
+model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
 labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
 input_shape = (224, 224)
+opt = tf.keras.optimizers.legacy.Adam(learning_rate=0.001)
+#model.compile(optimizer=opt, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+#model.fit()
 
 def food_classifier(image_url):
     image = np.asarray(io.imread(image_url), dtype="float")
@@ -19,11 +30,14 @@ def food_classifier(image_url):
     # The model expects an input of (?, 224, 224, 3).
     images = np.expand_dims(image, 0)
     # This assumes you're using TF2.
-    output = m(images)
+    output = model(images)
     predicted_index = output.numpy().argmax()
     classes = list(pd.read_csv(labelmap_url)["name"])
     return classes[predicted_index]
 
+# Test the model using images in your directory 
+
+image = sys.argv[1]
 cake_url = "https://www.allrecipes.com/thmb/SZjdgaXhmkrRNLoOvdxuAktwk3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/228443-authentic-pho-DDMFS-4x3-0523f6531ccf4dbeb4b5bde52e007b1e.jpg"
-prediction = food_classifier(cake_url)
+prediction = food_classifier(image)
 print("Prediction: ", prediction)

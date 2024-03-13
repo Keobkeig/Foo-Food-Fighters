@@ -1,19 +1,25 @@
-import cv2
-
-cap = cv2.VideoCapture(0)
-
-# Check if the webcam is opened correctly
-if not cap.isOpened():
-    raise IOError("Cannot open webcam")
-
-while True:
-    ret, frame = cap.read()
-    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
-    cv2.imshow('Input', frame)
-
-    c = cv2.waitKey(1)
-    if c == 27:
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+import cv2 as cv
+cam = cv.VideoCapture(cam_port) 
+  
+# reading the input using the camera 
+result, image = cam.read() 
+  
+# If image will detected without any error,  
+# show result 
+if result: 
+  
+    # showing result, it take frame name and image  
+    # output 
+    cv.imshow("GeeksForGeeks", image) 
+  
+    # saving image in local storage 
+    cv.imwrite("GeeksForGeeks.png", image) 
+  
+    # If keyboard interrupt occurs, destroy image  
+    # window 
+    cv.waitKey(0) 
+    cv.destroyWindow("GeeksForGeeks") 
+  
+# If captured image is corrupted, moving to else part 
+else: 
+    print("No image detected. Please! try again") 

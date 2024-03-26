@@ -37,7 +37,7 @@ def food_classifier(image_url):
 
 # Test the model using images in your directory 
 
-image = sys.argv[1]
-cake_url = "https://www.allrecipes.com/thmb/SZjdgaXhmkrRNLoOvdxuAktwk3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/228443-authentic-pho-DDMFS-4x3-0523f6531ccf4dbeb4b5bde52e007b1e.jpg"
-prediction = food_classifier(image)
-print("Prediction: ", prediction)
+# image = sys.argv[1]
+# cake_url = "https://www.allrecipes.com/thmb/SZjdgaXhmkrRNLoOvdxuAktwk3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/228443-authentic-pho-DDMFS-4x3-0523f6531ccf4dbeb4b5bde52e007b1e.jpg"
+# prediction = food_classifier(image)
+# print("Prediction: ", prediction)

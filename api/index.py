@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import os
 import requests
 from dotenv import load_dotenv, find_dotenv
-from api.test.model import food_classifier
+from test.model import food_classifier
 
 app = Flask(__name__)
 
@@ -48,6 +48,10 @@ def classify_food_image():
     if image_url is None:
         return jsonify({"error": "Please provide an image URL"}), 400
     return jsonify({"prediction": food_classifier(image_url)})
+
+@app.route("/")
+def home():
+    return "Welcome to the Food Classifier API!"
 
 if __name__ == "__main__":
     app.run(debug=True)

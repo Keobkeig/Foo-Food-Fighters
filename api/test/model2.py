@@ -29,16 +29,17 @@ path = os.path.join('food.h5')
 sample_imgs = 100
 
 with h5py.File(path, 'r') as n_file:
+    print("Keys: %s" % n_file.keys())
     total_imgs = n_file['images'].shape[0]
     read_idxs = slice(0,sample_imgs)
     im_data = n_file['images'][read_idxs]
     im_label = n_file['category'][()][read_idxs]
-    e = n_file['category_names'][()]
+    e = n_file['category'][()]
     label_names = [x.decode() for x in n_file['category_names'][()]]
-
+    print(n_file['category_names'][()])
     for imagenum in range(4):
-        IMAGE_arr = n_file['images'][imagenum][()]
-        cv2.imshow(f'Image: {e[imagenum]}', IMAGE_arr)
+        IMAGE_arr = n_file['images'][imagenum]
+        cv2.imshow(f'Image: {e[0]}', IMAGE_arr)
         # keep window posted for 2500 msec
         cv2.waitKey(2500)
         # destroy CV2 window when done

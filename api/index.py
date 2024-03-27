@@ -4,20 +4,26 @@ import requests
 from dotenv import load_dotenv, find_dotenv
 from test.model import food_classifier
 import psycopg2
+import sqlite3
 
 app = Flask(__name__)
 
 # Load environment variables from .env.local file
-dotenv_path = find_dotenv('.env.local')
+dotenv_path = find_dotenv('.env.development.local')
 load_dotenv(dotenv_path)
 
-# Open a connection to the database
-conn = psycopg2.connect(
-    database=os.getenv("POSTGRES_DATABASE"),
-    password=os.getenv("POSTGRES_PASSWORD"),
-    host=os.getenv("POSTGRES_HOST"),
-    user=os.getenv("POSTGRES_USER"),
-)
+# # Open a connection to the postgres database
+# conn = psycopg2.connect(
+#     database=os.getenv("POSTGRES_DATABASE"),
+#     password=os.getenv("POSTGRES_PASSWORD"),
+#     host=os.getenv("POSTGRES_HOST"),
+#     user=os.getenv("POSTGRES_USER"),
+#     sslmode='require'
+# )
+
+# Open a connection to the sqlite database
+conn = sqlite3.connect("database.db")
+conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
 
 # Route to fetch food information from Nutritionix API using a query
 @app.route("/api/query", methods=["GET"])
@@ -58,6 +64,7 @@ def classify_food_image():
         return jsonify({"error": "Please provide an image URL"}), 400
     return jsonify({"prediction": food_classifier(image_url)})
 
+# Route to sign up a new user
 @app.route("/api/signup", methods=["POST"])
 def signup():
     data = request.json
@@ -67,16 +74,16 @@ def signup():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
     user = cursor.fetchone()
-    cursor.close()
+   
     if user is not None:
         return jsonify({"error": "Username already exists"}), 400
     else:
-        cursor = conn.cursor()
         cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
         conn.commit()
         cursor.close()
         return jsonify({"message": "User signed up successfully"}), 201
 
+# Route to sign in an existing user
 @app.route("/api/signin", methods=["POST"])
 def login():
     data = request.json

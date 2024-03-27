@@ -14,6 +14,28 @@ import numpy as np
 
 import tensorflow as tf
 
+# myflaskapp/myflaskapp/__init__.py
+
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/api/submit-file', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return 'No file part', 400
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file', 400
+    if file:
+        # You can now use the file object
+        # For example, to save the file:
+        file.save('/api/uploads' + file.filename)
+        return 'File received', 200
+
+
+
+
 
 model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
 labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"

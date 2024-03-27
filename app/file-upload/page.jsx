@@ -36,11 +36,12 @@ export default function FileSubmissionPage() {
     };
 
     return (
-        <div>
-            <h1>File Submission Page</h1>
+        <div className="flex justify-center items-center h-screen bg-blue-300">
+            <h1 className="mb-2 block text-blue-500">File Submission Page</h1>
+            <p>Submit a file to the server</p>
             <form onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileChange} />
-                <button type="submit">Submit</button>
+                <button type="submit" style={{ backgroundColor: 'white', color: 'blue', padding: '10px' }}>Submit</button>
             </form>
         </div>
     );

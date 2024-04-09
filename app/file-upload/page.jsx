@@ -37,11 +37,10 @@ export default function FileSubmissionPage() {
 
     return (
         <div className="flex justify-center items-center h-screen bg-blue-300">
-            <h1 className="mb-2 block text-blue-500">File Submission Page</h1>
-            <p>Submit a file to the server</p>
-            <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit" style={{ backgroundColor: 'white', color: 'blue', padding: '10px' }}>Submit</button>
+            
+            <form onSubmit={handleSubmit} className="w-100 p-4 border border-gray-300 rounded-lg bg-gray-100">
+                <input type="file" onChange={handleFileChange} className="w-full py-1 px-2 rounded border border-gray-300 text-black"/>
+                <button type="submit" className="w-full py-2 px-4 rounded bg-blue-500 text-white border-none">Submit</button>
             </form>
         </div>
     );

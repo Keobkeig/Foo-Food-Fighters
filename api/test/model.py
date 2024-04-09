@@ -16,22 +16,31 @@ import tensorflow as tf
 
 # myflaskapp/myflaskapp/__init__.py
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/api/submit-file', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return 'No file part', 400
-    file = request.files['file']
-    if file.filename == '':
-        return 'No selected file', 400
-    if file:
-        # You can now use the file object
-        # For example, to save the file:
-        file.save('/api/uploads' + file.filename)
-        return 'File received', 200
+@app.route('/api/process-text', methods=['POST'])
+def process_text():
+    text = request.json.get('text')
+    # Process the text here
+    processed_text = food_classifier(text)
+    return jsonify({'processed_text': processed_text})
+
+
+
+# @app.route('/api/submit-file', methods=['POST'])
+# def upload_file():
+#     if 'file' not in request.files:
+#         return 'No file part', 400
+#     file = request.files['file']
+#     if file.filename == '':
+#         return 'No selected file', 400
+#     if file:
+#         # You can now use the file object
+#         # For example, to save the file:
+#         file.save('/api/uploads' + file.filename)
+#         return 'File received', 200
 
 
 

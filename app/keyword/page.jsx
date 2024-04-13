@@ -31,7 +31,7 @@ export default function TestPage() {
     <div className="flex justify-center items-center h-screen bg-blue-300">
       <form onSubmit={handleSubmit} className="w-64 p-4 border border-gray-300 rounded-lg bg-gray-100">
         <label className="mb-2 block text-blue-500">
-          Enter Image File URL Here:
+          Enter Keyword here:
           <input type="text" value={text} onChange={handleChange} className="w-full py-1 px-2 rounded border border-gray-300 text-black" />
         </label>
         <button type="submit" className="w-full py-2 px-4 rounded bg-blue-500 text-white border-none">Submit</button>

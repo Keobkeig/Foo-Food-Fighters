@@ -1,5 +1,7 @@
 'use client';
 
+// To run: 'npx next dev' in git bash
+
 import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 

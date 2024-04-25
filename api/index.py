@@ -5,8 +5,10 @@ from dotenv import load_dotenv, find_dotenv
 from test.model import food_classifier
 import psycopg2
 import sqlite3
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="http://localhost:3000", methods=["GET", "POST"])
 
 # Load environment variables from .env.local file
 dotenv_path = find_dotenv('.env.development.local')

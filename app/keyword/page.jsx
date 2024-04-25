@@ -14,7 +14,8 @@ export default function TestPage() {
     console.log(text);
 
     // Make an API call to submit the text (to Jason's thingy)
-    axios.post('/api/process-text', { text })
+
+    axios.post('http://127.0.0.1:5328/', { text })
       .then((response) => {
         // Handle the response from index.py
         console.log(response);

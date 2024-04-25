@@ -17,12 +17,15 @@ import tensorflow as tf
 # myflaskapp/myflaskapp/__init__.py
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="http://127.0.0.1:5328/", methods=["GET", "POST"])
 
-@app.route('/api/process-text', methods=['POST'])
+@app.route('/', methods=['POST'])
 def process_text():
     text = request.json.get('text')
+    print(text)
     # Process the text here
     processed_text = food_classifier(text)
     return jsonify({'processed_text': processed_text})

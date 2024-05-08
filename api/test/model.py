@@ -53,6 +53,7 @@ def process_text():
 model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
 labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
 input_shape = (224, 224)
+classes = list(pd.read_csv(labelmap_url)["name"])
 
 def food_classifier(image_url):
     image = np.asarray(io.imread(image_url), dtype="float")
@@ -64,7 +65,6 @@ def food_classifier(image_url):
     # This assumes you're using TF2.
     output = model(images)
     predicted_index = output.numpy().argmax()
-    classes = list(pd.read_csv(labelmap_url)["name"])
     return classes[predicted_index]
 
 # Test the model using images in your directory 

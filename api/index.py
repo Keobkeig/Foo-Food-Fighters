@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import os
 import requests
 from dotenv import load_dotenv, find_dotenv
-from test.model import food_classifier
+#from test.model import food_classifier
 import psycopg2
 import sqlite3
 from flask_cors import CORS

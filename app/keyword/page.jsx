@@ -18,8 +18,6 @@ export default function TestPage() {
     axios.post('http://127.0.0.1:5328/api/query', {query: text })
       .then((response) => {
         //take the json response and display it in the console
-        response = response.data;
-        console.log("Response from server:");
         console.log(response.data);
 
         console.log(response);

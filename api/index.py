@@ -80,7 +80,7 @@ def hello_world():
     return get_food_info("grape")
 
 # Route to classify food images
-@app.route("/api/image", methods=["POST"])
+@app.route("/api/image-url", methods=["POST"])
 def classify_food_image():
     image_url = request.json.get("image_url")
     if image_url is None:
@@ -93,6 +93,25 @@ def classify_food_image():
         # The model expects an input of (?, 224, 224, 3).
         images = np.expand_dims(image, 0)
         # This assumes you're using TF2.
+        output = model(images)
+        predicted_index = output.numpy().argmax()
+    return jsonify({"prediction": classes[predicted_index]})
+
+# Route to classify food images
+@app.route("/api/image-file", methods=["POST"])
+def classify_food_image_file():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file provided"}), 400
+
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    
+    else: 
+        image = np.asarray(io.imread(file.stream), dtype="float")
+        image = cv2.resize(image, dsize=input_shape, interpolation=cv2.INTER_CUBIC)
+        image = image / image.max()
+        images = np.expand_dims(image, 0)
         output = model(images)
         predicted_index = output.numpy().argmax()
     return jsonify({"prediction": classes[predicted_index]})

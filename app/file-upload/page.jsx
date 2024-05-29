@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function FileSubmissionPage() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -11,27 +12,27 @@ export default function FileSubmissionPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        // Perform file submission logic here
+
         if (selectedFile) {
-            // Example: Upload the file to a server
             const formData = new FormData();
             formData.append('file', selectedFile);
-            
-            // Make an API call to submit the file
-            fetch('/api/submit-file', {
-                method: 'POST',
-                body: formData
+
+            // Make an API call to submit the file using Axios
+            axios.post('http://127.0.0.1:5328/api/image-file', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response from the server
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the file submission
-                console.error(error);
-            });
+                .then((response) => {
+                    // Handle the response from the server
+                    console.log(response.data);
+                    console.log(response.status);
+                    console.log(response);
+                })
+                .catch((error) => {
+                    // Handle any errors that occurred during the file submission
+                    console.error(error);
+                });
         }
     };
 

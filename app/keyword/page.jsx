@@ -15,9 +15,13 @@ export default function TestPage() {
 
     // Make an API call to submit the text (to Jason's thingy)
 
-    axios.post('http://127.0.0.1:5328/', { text })
+    axios.post('http://127.0.0.1:5328/api/query', {query: text })
       .then((response) => {
-        // Handle the response from index.py
+        //take the json response and display it in the console
+        response = response.data;
+        console.log("Response from server:");
+        console.log(response.data);
+
         console.log(response);
       })
       .catch((error) => {

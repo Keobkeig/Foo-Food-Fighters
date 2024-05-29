@@ -8,7 +8,7 @@ import sqlite3
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins="http://127.0.0.1:5328/", methods=["GET", "POST"])
+CORS(app, methods=["GET", "POST"])
 
 # Load environment variables from .env.local file
 dotenv_path = find_dotenv('.env.development.local')
@@ -28,9 +28,11 @@ conn = sqlite3.connect("database.db")
 conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
 
 # Route to fetch food information from Nutritionix API using a query
-@app.route("/api/query", methods=["GET"])
-def get_food_info(query):
+@app.route("/api/query", methods=["POST"])
+def get_food_info():
     end_point = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
+    data = request.get_json()
+    query = data.get('query')  # Get the 'query' field from the JSON data
 
     headers = {
         'x-app-id': os.getenv('APP_ID'),

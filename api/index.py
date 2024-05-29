@@ -46,19 +46,20 @@ classes = list(pd.read_csv(labelmap_url)["name"])
 conn = sqlite3.connect("database.db")
 conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
 
+#API ROUTES
+end_point = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
+headers = {
+    'x-app-id': os.getenv('APP_ID'),
+    'x-app-key': os.getenv('API_KEY'),
+    'x-remote-user-id': '0',
+    'content-type': 'application/json',
+}
+
 # Route to fetch food information from Nutritionix API using a query
 @app.route("/api/query", methods=["POST"])
 def get_food_info():
-    end_point = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     data = request.get_json()
     query = data.get('query')  # Get the 'query' field from the JSON data
-
-    headers = {
-        'x-app-id': os.getenv('APP_ID'),
-        'x-app-key': os.getenv('API_KEY'),
-        'x-remote-user-id': '0',
-        'content-type': 'application/json',
-    }
 
     params = {
         'query': query,
@@ -88,11 +89,8 @@ def classify_food_image():
     else: 
         image = np.asarray(io.imread(image_url), dtype="float")
         image = cv2.resize(image, dsize=input_shape, interpolation=cv2.INTER_CUBIC)
-        # Scale values to [0, 1].
         image = image / image.max()
-        # The model expects an input of (?, 224, 224, 3).
         images = np.expand_dims(image, 0)
-        # This assumes you're using TF2.
         output = model(images)
         predicted_index = output.numpy().argmax()
     return jsonify({"prediction": classes[predicted_index]})
@@ -114,7 +112,21 @@ def classify_food_image_file():
         images = np.expand_dims(image, 0)
         output = model(images)
         predicted_index = output.numpy().argmax()
-    return jsonify({"prediction": classes[predicted_index]})
+    #return jsonify({"prediction": classes[predicted_index]}) #IF YOU WANT TO RETURN WHAT THE PREDICTION IS  
+    params = {
+        'query': classes[predicted_index],
+        'taxonomy': False,
+    }
+
+    response = requests.post(end_point, headers=headers, json=params)
+    
+    if response.status_code == 200:
+        data = response.json()
+        del data['foods'][0]['full_nutrients']
+        return jsonify(data), 200
+    else:
+        return jsonify({"error": "Failed to fetch data from Nutritionix API"}), response.status_code
+    
 
 # Route to sign up a new user
 @app.route("/api/signup", methods=["POST"])

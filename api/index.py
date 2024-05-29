@@ -2,10 +2,23 @@ from flask import Flask, jsonify, request
 import os
 import requests
 from dotenv import load_dotenv, find_dotenv
-from test.model import food_classifier
+#from test.model import food_classifier
 import psycopg2
 import sqlite3
 from flask_cors import CORS
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
+import tensorflow_hub as hub
+import numpy as np
+import pandas as pd
+import cv2
+from skimage import io
+import itertools
+import sys 
+
+import numpy as np
+
+import tensorflow as tf
 
 app = Flask(__name__)
 CORS(app, methods=["GET", "POST"])
@@ -22,6 +35,12 @@ load_dotenv(dotenv_path)
 #     user=os.getenv("POSTGRES_USER"),
 #     sslmode='require'
 # )
+
+#Load the model 
+model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
+labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
+input_shape = (224, 224)
+classes = list(pd.read_csv(labelmap_url)["name"])
 
 # Open a connection to the sqlite database
 conn = sqlite3.connect("database.db")
@@ -66,7 +85,17 @@ def classify_food_image():
     image_url = request.json.get("image_url")
     if image_url is None:
         return jsonify({"error": "Please provide an image URL"}), 400
-    return jsonify({"prediction": food_classifier(image_url)})
+    else: 
+        image = np.asarray(io.imread(image_url), dtype="float")
+        image = cv2.resize(image, dsize=input_shape, interpolation=cv2.INTER_CUBIC)
+        # Scale values to [0, 1].
+        image = image / image.max()
+        # The model expects an input of (?, 224, 224, 3).
+        images = np.expand_dims(image, 0)
+        # This assumes you're using TF2.
+        output = model(images)
+        predicted_index = output.numpy().argmax()
+    return jsonify({"prediction": classes[predicted_index]})
 
 # Route to sign up a new user
 @app.route("/api/signup", methods=["POST"])

@@ -2,8 +2,6 @@ from flask import Flask, jsonify, request
 import os
 import requests
 from dotenv import load_dotenv, find_dotenv
-#from test.model import food_classifier
-import psycopg2
 import sqlite3
 from flask_cors import CORS
 
@@ -26,15 +24,6 @@ CORS(app, methods=["GET", "POST"])
 # Load environment variables from .env.local file
 dotenv_path = find_dotenv('.env.development.local')
 load_dotenv(dotenv_path)
-
-# # Open a connection to the postgres database
-# conn = psycopg2.connect(
-#     database=os.getenv("POSTGRES_DATABASE"),
-#     password=os.getenv("POSTGRES_PASSWORD"),
-#     host=os.getenv("POSTGRES_HOST"),
-#     user=os.getenv("POSTGRES_USER"),
-#     sslmode='require'
-# )
 
 #Load the model 
 model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')

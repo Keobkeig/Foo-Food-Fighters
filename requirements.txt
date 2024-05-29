@@ -38,7 +38,6 @@ packaging==23.2
 pandas==2.2.0
 pillow==10.2.0
 protobuf==4.25.3
-psycopg2 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_c90tr59ma3/croot/psycopg2_1704232447537/work
 pyasn1==0.5.1
 pyasn1-modules==0.3.0
 python-dateutil==2.8.2

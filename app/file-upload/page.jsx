@@ -43,6 +43,7 @@ export default function FileSubmissionPage() {
                 <input type="file" onChange={handleFileChange} className="w-full py-1 px-2 rounded border border-gray-300 text-black"/>
                 <button type="submit" className="w-full py-2 px-4 rounded bg-blue-500 text-white border-none">Submit</button>
             </form>
+            
         </div>
     );
 }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+// import './style.css';
 
 export default function FileSubmissionPage() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -39,12 +40,12 @@ export default function FileSubmissionPage() {
         }
     };
 
-    return (
+return (
         <div className="flex justify-center items-center h-screen bg-blue-300">
             {!responseData ? (
-                <form onSubmit={handleSubmit} className="w-100 p-4 border border-gray-300 rounded-lg bg-gray-100">
-                    <input type="file" onChange={handleFileChange} className="w-full py-1 px-2 rounded border border-gray-300 text-black"/>
-                    <button type="submit" className="w-full py-2 px-4 rounded bg-blue-500 text-white border-none">Submit</button>
+                <form onSubmit={handleSubmit} >
+                    <input type="file" onChange={handleFileChange} />
+                    <button type="submit">Submit</button>
                 </form>
             ) : 
             // Display the response data if it exists

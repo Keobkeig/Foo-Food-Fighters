@@ -23,7 +23,7 @@ export default function Home() {
             <a className="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank" rel="noopener noreferrer">
                 <span className="icon"></span>
             </a>
-            <a className="bg_links social github" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank" rel="noopener noreferrer">
+            <a className="bg_links social github" href="https://github.com/Keobkeig/Foo-Food-Fighters" target="_blank" rel="noopener noreferrer">
                 <span className="icon"></span>
             </a>
             <a className="bg_links logo"></a>

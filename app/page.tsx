@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Parallax from 'parallax-js';
 import './styles.css';
+import Link from 'next/link';
+import Navbar from './components/Navbar';
+import About from './components/About';
+import Credits from './components/Credits';
 
 export default function Home() {
 
@@ -15,36 +19,9 @@ export default function Home() {
 
   return (
     <>
-    <title>Foo Food Fighters</title>
     <div>
-        {/* About Section */}
-        <div className="about">
-            <a className="bg_links social portfolio" href="https://docs.google.com/presentation/d/1RKkR4Gn1ErfyojjL3SQZ0STdPTwmteu1WJ1i8Gyh3UE/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                <span className="icon"></span>
-            </a>
-            <a className="bg_links social dribbble" href="https://keobekigs-blog.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <span className="icon"></span>
-            </a>
-            <a className="bg_links social github" href="https://github.com/Keobkeig/Foo-Food-Fighters" target="_blank" rel="noopener noreferrer">
-                <span className="icon"></span>
-            </a>
-            <a className="bg_links logo"></a>
-        </div>
-
-        {/* Navigation */}
-        <nav>
-            <div className="menu">
-                <p className="website_name">FOO FOOD FIGHTERS</p>
-                <div className="menu_links">
-                    <a href="" className="link">Home</a>
-                    <a href="" className="link">Keyword</a>
-                    <a href="" className="link">FileUpload</a>
-                </div>
-                <div className="menu_icon">
-                    <span className="icon"></span>
-                </div>
-            </div>
-        </nav>
+        <About />
+        <Navbar />
 
         {/* Main Section */}
         <section className="wrapper">
@@ -87,7 +64,7 @@ export default function Home() {
                 </div>
             </div>
         </section>
-        <div className="inspired-by"><i>Style inspired by Rafaela Lucas</i></div>
+        <Credits />
     </div>
     </>
     

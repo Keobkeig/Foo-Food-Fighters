@@ -2,6 +2,11 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import About from '../components/About';
+import Credits from '../components/Credits';
+import Navbar from '../components/Navbar';
+import '../styles.css';
+
 // import './style.css';
 
 export default function FileSubmissionPage() {
@@ -41,6 +46,9 @@ export default function FileSubmissionPage() {
     };
 
 return (
+    <>
+        <About />
+        <Navbar />
         <div className="flex justify-center items-center h-screen bg-blue-300">
             {!responseData ? (
                 <form onSubmit={handleSubmit} >
@@ -69,5 +77,8 @@ return (
                 </div>
             )}
         </div>
+        <Credits />
+    </>
+        
     );
 }

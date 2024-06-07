@@ -4,6 +4,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Head from 'next/head';
+import About from '../components/About';
+import Credits from '../components/Credits';
+import Navbar from '../components/Navbar';
+import '../styles.css';
 
 export default function TestPage() {
   const [text, setText] = useState('');
@@ -35,6 +39,8 @@ export default function TestPage() {
 
   return (
     <>
+      <About />
+      <Navbar />
       <Head>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Archivo+Black" />
         <link rel="stylesheet" type="text/css" href="/bower_components/nutrition-label-jquery-plugin/dist/css/nutritionLabel-min.css" />
@@ -70,6 +76,7 @@ export default function TestPage() {
           </div>
         )}
       </div>
+      <Credits />
     </>
   );
 }

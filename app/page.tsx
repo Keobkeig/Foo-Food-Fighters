@@ -14,13 +14,15 @@ export default function Home() {
   }, []);  
 
   return (
+    <>
+    <title>Foo Food Fighters</title>
     <div>
         {/* About Section */}
         <div className="about">
-            <a className="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank" rel="noopener noreferrer">
+            <a className="bg_links social portfolio" href="https://docs.google.com/presentation/d/1RKkR4Gn1ErfyojjL3SQZ0STdPTwmteu1WJ1i8Gyh3UE/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <span className="icon"></span>
             </a>
-            <a className="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank" rel="noopener noreferrer">
+            <a className="bg_links social dribbble" href="https://keobekigs-blog.vercel.app/" target="_blank" rel="noopener noreferrer">
                 <span className="icon"></span>
             </a>
             <a className="bg_links social github" href="https://github.com/Keobkeig/Foo-Food-Fighters" target="_blank" rel="noopener noreferrer">
@@ -85,6 +87,9 @@ export default function Home() {
                 </div>
             </div>
         </section>
+        <div className="inspired-by"><i>Style inspired by Rafaela Lucas</i></div>
     </div>
+    </>
+    
 );
 }

@@ -632,4 +632,17 @@ nav .menu .menu_icon:hover .icon:after {
   animation-delay: 4.5s;
 }
 
+.inspired-by {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px 5px 0 0;
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif; 
+}
+
+
 /*# sourceMappingURL=styles.css.map */

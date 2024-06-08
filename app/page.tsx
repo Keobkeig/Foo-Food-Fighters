@@ -53,8 +53,8 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <p className="main" data-depth="0.5">Hey 👋</p>
-                    <p className="main" data-depth="0.1">Hey 👋</p>
+                    <p className="main" data-depth="0.5">Hungry?</p>
+                    <p className="main" data-depth="0.1">Hungry?</p>
                 </div>
 
                 <div className="text">

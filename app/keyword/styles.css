@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Barlow", sans-serif; /* Example of using the font variable */
+}
+
+.center-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.textarea {
+    padding: 12px 20px; /* Updated padding to use spaces instead of commas */
+    font-size: 1rem;
+    border-width: calc(var(--border-width, 2) * 1px); /* Default value for --border-width */
+    border-style: solid;
+    border-color: var(--accent, #ccc); /* Default color for --accent */
+    border-radius: calc(var(--border-radius, 4) * 1px); /* Default value for --border-radius */
+    text-align: center;
+    outline: transparent;
+    width: 100%;
+    transition: border-color calc(var(--transition, 0.2) * 1s) ease;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Added box shadow for better styling */
+}
+
+.texta {
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    border-style: none;
+    outline: none;
+    height: calc(1em + 1.6em + 0.5em);
+    width: 100%;
+    padding: 0.8em 1em;
+    border: 0.25em solid transparent;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), linear-gradient(120deg, rgb(89, 14, 108) 0%, rgb(224, 174, 243) 50%, #9f0 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 1.8em;
+    background-size: 200% 100%;
+    transition: background-position 0.8s ease-out;
+}
+
+
+.input-group-label {
+    width: 100%;
+    max-width: 20em;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    padding: 0 0.5em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+    font-size: 0.875em;
+    letter-spacing: 0.1em;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+.input-group-input {
+    width: 100%;
+    max-width: 20em;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    border-style: none;
+    outline: none;
+    /* // height calc line-height + (vertical-padding * 2) + (vertical-border * 2) */
+    height: calc(1em + 1.6em + 0.5em);
+    width: 100%;
+    padding: 0.8em 1em;
+    border: 0.25em solid transparent;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.25)),
+    linear-gradient(120deg, rgb(93, 15, 89) 0%, rgb(253, 93, 237) 50%, #9f0 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 1.8em;
+    background-size: 200% 100%;
+    transition: background-position 0.8s ease-out;
+}
+
+
+

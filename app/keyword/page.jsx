@@ -9,6 +9,7 @@ import Credits from '../components/Credits';
 import Navbar from '../components/Navbar';
 import FoodLabel from '../components/FoodLabel';
 import '../styles.css';
+import './styles.css';
 
 export default function TestPage() {
   const [text, setText] = useState('');
@@ -78,14 +79,14 @@ export default function TestPage() {
               </div>
             </div>
 
-            <div className="text">
+            <div className="text center-container input-group">
               <article className="w-128 p-4 border border-gray-300 rounded-lg bg-gray-100 text-black">
               {!responseData ? (
                 <form onSubmit={handleSubmit}>
-                  <label className="article">
-                    Enter Keyword here:
-                    <input type="text" value={text} onChange={handleChange} />
+                  <label className="input-group-label article">
+                    Enter Keyword Here:
                   </label>
+                  <input type="text" value={text} class="input-group-input" onChange={handleChange} />
                   <button type="submit">Submit</button>
                 </form>
               ) : (

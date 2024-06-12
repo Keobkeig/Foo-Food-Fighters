@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Head from 'next/head';
 
 export default function TestPage() {

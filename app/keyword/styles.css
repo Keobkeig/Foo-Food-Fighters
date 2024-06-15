@@ -14,21 +14,6 @@ body {
     text-align: center;
 }
 
-.textarea {
-    padding: 12px 20px; /* Updated padding to use spaces instead of commas */
-    font-size: 1rem;
-    border-width: calc(var(--border-width, 2) * 1px); /* Default value for --border-width */
-    border-style: solid;
-    border-color: var(--accent, #ccc); /* Default color for --accent */
-    border-radius: calc(var(--border-radius, 4) * 1px); /* Default value for --border-radius */
-    text-align: center;
-    outline: transparent;
-    width: 100%;
-    transition: border-color calc(var(--transition, 0.2) * 1s) ease;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Added box shadow for better styling */
-}
-
 .texta {
     color: #fff;
     font-size: 1.25rem;
@@ -91,5 +76,17 @@ body {
     transition: background-position 0.8s ease-out;
 }
 
+.response-container {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
 

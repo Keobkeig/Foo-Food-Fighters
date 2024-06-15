@@ -1,7 +1,7 @@
 import React from 'react';
 import './foodlabel.css'; // Add appropriate CSS
 
-const FoodDetails = () => {
+const FoodDetails = ({foodData}) => {
   const foodData = {
     foods: [
       {
@@ -32,6 +32,7 @@ const FoodDetails = () => {
     <section className="performance-facts">
       <header className="performance-facts__header">
         <h1 className="performance-facts__title">Nutrition Facts</h1>
+        <h1 className='performance-facts__title--small'>{food.food_name}</h1>
         <p>Serving Size {food.serving_qty} {food.serving_unit} ({food.serving_weight_grams}g)</p>
         <p>Servings Per Container 1</p>
       </header>

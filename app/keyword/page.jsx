@@ -79,10 +79,10 @@ export default function TestPage() {
               </div>
             </div>
 
-            <div className="text center-container input-group">
-              <article className="w-128 p-4 border border-gray-300 rounded-lg bg-gray-100 text-black">
+            <div className="text center-container">
+              <article>
               {!responseData ? (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='input-group'>
                   <label className="input-group-label article">
                     Enter Keyword Here:
                   </label>
@@ -90,15 +90,10 @@ export default function TestPage() {
                   <button type="submit">Submit</button>
                 </form>
               ) : (
-                <div className="w-128 p-4 border border-gray-300 rounded-lg bg-gray-100 text-black">
-                  {/* <h2 className="text-xl font-bold mb-4">Nutrition Label</h2>
-            <div id="nutrition-label"></div> */}
-                  {/* <h2 className="text-xl font-bold mb-4">Response Data</h2>
-                  <pre className="text-sm whitespace-pre-wrap">{JSON.stringify(responseData, null, 2)}</pre> */}
+                <div className="response-container">
                   <FoodLabel food={responseData} />
                   <button
                     onClick={() => setResponseData(null)}
-                    className="mt-4 py-2 px-4 rounded bg-blue-500 text-white border-none"
                   >
                     Submit Another Query
                   </button>

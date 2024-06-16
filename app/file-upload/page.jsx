@@ -48,6 +48,12 @@ export default function FileSubmissionPage() {
             .then((response) => {
                 console.log(response.data);
                 setResponseData(response.data);  // Store the response data in state
+                let data = response.data.foods;
+                console.log(data);
+                let array = data[0].food_name;
+                console.log(array);
+
+                // console.log(name);
                 setError(null);
             })
             .catch((error) => {

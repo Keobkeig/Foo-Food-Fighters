@@ -1,31 +1,33 @@
 import React from 'react';
 import './foodlabel.css'; // Add appropriate CSS
 
-const FoodDetails = ({foodData}) => {
-  const foodData = {
-    foods: [
-      {
-        food_name: "banana",
-        brand_name: null,
-        serving_qty: 1,
-        serving_unit: "medium (7\" to 7-7/8\" long)",
-        serving_weight_grams: 118,
-        nf_calories: 105,
-        nf_total_fat: 0.4,
-        nf_saturated_fat: 0.1,
-        nf_cholesterol: 0,
-        nf_sodium: 1,
-        nf_total_carbohydrate: 27,
-        nf_dietary_fiber: 3.1,
-        nf_sugars: 14.4,
-        nf_protein: 1.3,
-        nf_potassium: 422,
-        nf_p: 26,
-      }
-    ]
-  };
 
-  const { foods } = foodData;
+const FoodDetails = ({ data }) => {
+
+  // const foodData = {
+  //   foods: [
+  //     {
+  //       food_name: "banana",
+  //       brand_name: null,
+  //       serving_qty: 1,
+  //       serving_unit: "medium (7\" to 7-7/8\" long)",
+  //       serving_weight_grams: 118,
+  //       nf_calories: 105,
+  //       nf_total_fat: 0.4,
+  //       nf_saturated_fat: 0.1,
+  //       nf_cholesterol: 0,
+  //       nf_sodium: 1,
+  //       nf_total_carbohydrate: 27,
+  //       nf_dietary_fiber: 3.1,
+  //       nf_sugars: 14.4,
+  //       nf_protein: 1.3,
+  //       nf_potassium: 422,
+  //       nf_p: 26,
+  //     }
+  //   ]
+  // };
+
+  const { foods } = data;
   const food = foods[0];
 
   return (

@@ -101,7 +101,8 @@ def classify_food_image_file():
         images = np.expand_dims(image, 0)
         output = model(images)
         predicted_index = output.numpy().argmax()
-    #return jsonify({"prediction": classes[predicted_index]}) #IF YOU WANT TO RETURN WHAT THE PREDICTION IS  
+        # print(classes[predicted_index])
+    # return jsonify({"prediction": classes[predicted_index]}) #IF YOU WANT TO RETURN WHAT THE PREDICTION IS  
     params = {
         'query': classes[predicted_index],
         'taxonomy': False,

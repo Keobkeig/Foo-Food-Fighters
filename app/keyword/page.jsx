@@ -7,7 +7,7 @@ import Head from 'next/head';
 import About from '../components/About';
 import Credits from '../components/Credits';
 import Navbar from '../components/Navbar';
-import FoodLabel from '../components/FoodLabel';
+import FoodDetails from '../components/FoodLabel';
 import '../styles.css';
 import './styles.css';
 
@@ -79,8 +79,8 @@ export default function TestPage() {
               </div>
             </div>
 
-            <div className="text center-container">
-              <article>
+            <div className="center-container">
+              <article className="w-128 p-4 border border-gray-300 rounded-lg bg-gray-100 text-black">
               {!responseData ? (
                 <form onSubmit={handleSubmit} className='input-group'>
                   <label className="input-group-label article">
@@ -91,7 +91,7 @@ export default function TestPage() {
                 </form>
               ) : (
                 <div className="response-container">
-                  <FoodLabel food={responseData} />
+                  <FoodDetails data={responseData} />
                   <button
                     onClick={() => setResponseData(null)}
                   >

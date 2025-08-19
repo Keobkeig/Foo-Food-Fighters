@@ -59,7 +59,7 @@ export default function Home() {
 
                 <div className="text">
                     <article>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting <br />Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <p> The AI app that simplifies calorie tracking with just one photo. </p>
                         <button>Let's eat</button>
                     </article>
                 </div>

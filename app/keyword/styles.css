@@ -78,11 +78,9 @@ body {
 
 .response-container {
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
     background: white;
+    left: 50%;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;

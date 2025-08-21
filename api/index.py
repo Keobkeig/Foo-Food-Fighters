@@ -11,27 +11,18 @@ import numpy as np
 import pandas as pd
 import cv2
 from skimage import io
-import itertools
-import sys 
 
 import numpy as np
-
-import tensorflow as tf
 
 app = Flask(__name__)
 CORS(app, methods=["GET", "POST"])
 
-# Load environment variables from .env.local file
 dotenv_path = find_dotenv('.env.development.local')
 load_dotenv(dotenv_path)
-
-#Load the model 
 model = hub.KerasLayer('https://www.kaggle.com/models/google/aiy/frameworks/TensorFlow1/variations/vision-classifier-food-v1/versions/1')
 labelmap_url = "https://www.gstatic.com/aihub/tfhub/labelmaps/aiy_food_V1_labelmap.csv"
 input_shape = (224, 224)
 classes = list(pd.read_csv(labelmap_url)["name"])
-
-# Open a connection to the sqlite database
 conn = sqlite3.connect("database.db")
 conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
 
@@ -44,19 +35,15 @@ headers = {
     'content-type': 'application/json',
 }
 
-# Route to fetch food information from Nutritionix API using a query
 @app.route("/api/query", methods=["POST"])
 def get_food_info():
     data = request.get_json()
     query = data.get('query')  # Get the 'query' field from the JSON data
-
     params = {
         'query': query,
         'taxonomy': False,
     }
-
     response = requests.post(end_point, headers=headers, json=params)
-    
     if response.status_code == 200:
         data = response.json()
         del data['foods'][0]['full_nutrients']
